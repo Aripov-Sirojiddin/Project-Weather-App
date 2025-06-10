@@ -1,10 +1,10 @@
 import { getApi } from "./api_key";
 
-export async function getWeather() {
+export async function getWeather(loading_element) {
   const { coords } = await getGeoLocation();
   const api_link = getApi(coords.latitude, coords.longitude);
 
-  const res = fetch(api_link);
+  const res = fetch(api_link).finally(() => loading_element.remove());
   const result = (await res).json();
   return result;
 }

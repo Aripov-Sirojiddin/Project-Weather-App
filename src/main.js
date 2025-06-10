@@ -1,7 +1,10 @@
 import { getWeather } from "./weather_api";
 
 (async () => {
-  const response = await getWeather();
+  const loading_element = document.createElement("p");
+  loading_element.textContent = "Loading...";
+  document.body.appendChild(loading_element);
+  const response = await getWeather(loading_element);
   const date = new Date();
 
   console.log(
